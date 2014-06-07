@@ -1,0 +1,72 @@
+<html>
+<body>
+<pre>
+<font color="#0000FF">import</font> java.awt.event.ActionEvent; 
+<font color="#0000FF">import</font> java.awt.event.ActionListener; 
+
+<font color="#0000FF">import</font> javax.swing.JButton; 
+<font color="#0000FF">import</font> javax.swing.JFrame; 
+
+
+<font color="#FF00FF">public class</font> InvestmentViewer1 <font color="#0000FF">extends</font> JFrame { 
+	<font color="008000">//Constants to define the width and height of the JFrame</font> 
+	<font color="#FF00FF">private static final int</font> <i><font color="#0000FF">FRAME_WIDTH</font></i> = 400; 
+	<font color="#FF00FF">private static final int</font> <i><font color="#0000FF">FRAME_HEIGHT</font></i> = 200; 
+	
+	<font color="008000">//The interest rate constant for the bank account</font> 
+	<font color="#FF00FF">private static final double</font> <i><font color="#0000FF">INTEREST_RATE</font></i> = 10; 
+	
+	<font color="008000">//The initial balance that the bank account will be initialized to</font> 
+	<font color="#FF00FF">private static final double</font> <i><font color="#0000FF">INITIAL_BALANCE</font></i> = 1000; 
+	
+	<font color="008000">//The button that will be on the screen</font> 
+	<font color="#FF00FF">private</font> JButton <font color="#0000FF">button</font>; 
+	
+	<font color="008000">//The bank account</font> 
+	<font color="#FF00FF">private</font> BankAccount <font color="#0000FF">account</font>; 
+	
+	<font color="#FF00FF">public</font> InvestmentViewer1(){
+		<font color="008000">//initialize the class variables</font> 
+		<font color="#0000FF">button</font> = <font color="#FF00FF">new</font> JButton(<font color="#0000FF">"Add Interest"</font>); 
+		<font color="#0000FF">account</font> = <font color="#FF00FF">new</font> BankAccount(<font color="#0000FF"><i>INITIAL_BALANCE</i></font>); 
+		
+		<font color="008000">//create a new instance of the ButtonActionListener class</font> 
+		ButtonActionListener listener = <font color="#FF00FF">new</font> ButtonActionListener(); 
+		
+		<font color="008000">//add the ActionListener object to the button</font> 
+		<font color="#0000FF">button</font>.addActionListener(listener); 
+		
+		<font color="008000">//set the size, title, and closing operation of the JFrame</font> 
+		setSize(<font color="#0000FF"><i>FRAME_WIDTH</i></font>, <font color="#0000FF"><i>FRAME_HEIGHT</i></font>); 
+		setTitle(<font color="#0000FF">"JFrame Example"</font>); 
+		setDefaultCloseOperation(<font color="#0000FF"><i>EXIT_ON_CLOSE</i></font>); 
+		
+		<font color="008000">//add the button to the JFrame</font> 
+		add(<font color="#0000FF">button</font>); 
+	} 
+	
+	<font color="#FF00FF">private class</font> ButtonActionListener <font color="#0000FF">implements</font> ActionListener { 
+		@Override 
+		<font color="#FF00FF">public void</font> actionPerformed(ActionEvent arg0){ 
+			<font color="008000">//get the amount of interest that needs to be added to the account</font> 
+			<font color="#FF00FF">double</font> interest = <font color="#0000FF">account</font>.getBalance() * <font color="#0000FF"><i>INTEREST_RATE</i></font> / 100; 
+			
+			<font color="008000">//deposit the interest</font> 
+			<font color="#0000FF">account</font>.deposit(interest); 
+			
+			<font color="008000">//print out the new balance</font> 
+			System.<font color="#0000FF"><i>out</i></font>.println("Balance:  " + <font color="#0000FF">account</font>.getBalance()); 
+		} 
+	} 
+	
+	<font color="#FF00FF">public static void</font> main(String[] args){ 
+		<font color="008000">//create a new instance of the InvestmentViewer1 class</font> 
+		InvestmentViewer1 gui = <font color="#FF00FF">new</font> InvestmentViewer1(); 
+		
+		<font color="008000">//make the JFrame visible</font> 
+		gui.setVisible(<font color="#FF00FF">true</font>); 
+	} 
+}
+</pre>
+</body>
+</html>

@@ -1,0 +1,6 @@
+1. Total cost units = (8 for first 8 pushes) + (1 for making a new array) + (8 to copy the old array) + (8 new values into new array) + (1 for new array) + (16 to copy old data) + (16 to finish out the data set) =
+8 + 1 + 8 + 8 + 1 + 16 + 16 = ~56-58
+
+2. 8 + 1 + 8 + 2 + 1 + 10 + 2 + 1 + 12 + 2 + 1 + 14 + 1 + 2 + 16 + 1 + 2 + 18 + 1 + 2 + 20 + 1 + 2 + 22 + 1 + 2 + 24 + 1 + 2 + 26 + 1 + 2 + 28 + 1 + 2 + 30 + 1 + 2 + 32 = 305
+
+3. If you alternate the push and pop on the boundary N/2 you must double and then shrink the array every cycle. In order to fix this, set the shrinking policy to occure only when the size is N/4 the capacity. Or half of a half.

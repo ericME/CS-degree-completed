@@ -1,0 +1,34 @@
+The classes table is bad for several reasons.
+First, it is not a great idea (in general) to use a string as a primary key. It can't auto_increment. The list must resort every time a new class is added, instead of being appended to the end. In this case it is even worse because they used a CHAR(10) which will ALWAYS use 10 bytes of data for every row. If this is a very big database it will take up a lot of unnecessary memory.
+Second, if there are two sections of the same class the primary key becomes a huge problem, since both classes have the same name. These two problems can be solved by using a class_id, a unique identification number so that class name isn't so critical. Also, for class_name, use VARCHAR(255).
+Next, it doesn't have much in the way of useful information. Most classes have meeting times, reference numbers (CS275 for example) and so on. These should be thought of during the database design so all records have all this data, rather than tacked on later as they are thought of.
+The students table again uses a poor choice for primary key. Surely there are duplicate student names out there. And for the other reason's listed above I recommend the primary key be an auto_increment-ing student_id.
+Age is a strange record to keep. Age should be calculated from birthday as it will change over time. The birthday should not be a VARCHAR(10), but a DATE.
+Another MAJOR problem with this setup is the on delete cascade statement appended to each class the student is enrolled in. Using this statement with delete a student if a class they are enrolled in is deleted! Yikes! Talk about major data loss.
+The classes to students relationship is many to many. Instead of limiting the student to 4 possibilities a third table should be used, a relationship table that pairs student_id's with class_id's. This also solves the on delete cascade dilema, the row in the relationship table is deleted, as it should be, but the student record is left in tact.
+
+DROP TABLE IF EXISTS students2classes;
+DROP TABLE IF EXISTS students;
+DROP TABLE IF EXISTS classes;
+
+CREATE TABLE classes(
+class_id INT primary key auto_increment,
+class_name varchar(255),
+class_time TIME,
+class_days varchar(255),
+class_desc varchar(255),
+class_num varchar(255)
+)engine = innodb;
+
+CREATE TABLE students(
+student_id INT PRIMARY KEY AUTO_INCREMENT ,
+full_name VARCHAR( 255 ) ,
+birthday VARCHAR( 255 )
+) ENGINE = INNODB;
+
+CREATE TABLE students2classes(
+class INT,
+student INT,
+FOREIGN KEY ( class ) REFERENCES classes( class_id ) ON DELETE CASCADE,
+FOREIGN KEY ( student ) REFERENCES students( student_id ) ON DELETE CASCADE
+) ENGINE = INNODB;

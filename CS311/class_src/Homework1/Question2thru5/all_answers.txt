@@ -1,0 +1,22 @@
+##########################################################################
+Question 2:
+Revision Control systems are, as the name implies, software applications that control the revision of files. Usually used for software development, they automate the storage, retrieval, logging, identification and merging of revisions.
+They are useful because they make it easy to lock files for editing, keep track of changes and merge multiple copies of a single file. Thus allowing teams to collaborate on documents/files. Or, in the case of a single user, merge or rollback changes that have been implemented.
+Examples include: Git, SVN, RCS, and CVS. Also: Mercurial and Bazaar
+Common Commands for:
+    GIT: init or clone, add, commit
+    SVN: checkout, add, commit
+    RCS: checkin, checkout, rcsdiff
+    CVS: checkout, add, commit
+##########################################################################
+Question 3:
+Redirection is used in UNIX to redirect standard streams (standard input, standard output and standard error) to locations specified by the user.
+Piping, as used in UNIX, is the action of chaining processes by their standard streams so that the stdout of the first process feeds the stdin of the next, and so on until the final stdout.
+Thus, the difference is that redirection changes the standard stream locations while piping uses the standard streams as they are to move data into and out of programs in a sequential fashion.
+##########################################################################
+Question 4:
+find . -type f -exec file '{}' ';'
+##########################################################################
+Question 5:
+According to the man page, make is a GNU utility to maintain groups of programs. Its purpose is to determine automatically which pieces of a a large program need to be recompiled and issue those commands to recompile them.
+

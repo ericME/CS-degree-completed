@@ -1,0 +1,14 @@
+Option 3 is perhaps the most obvious poor choice. It is the easiest to pick on because it tries to accomplish everything within a single table. This is not a very good idea. For instance, the time a vehicle reaches sixty miles per hour is a completely meaningless value when referring to an airplane. Or even most motorcycles. So you would have this database with large sections of it not used or filled with meaningless data.
+
+Since it has an entry for every possible value in each row, it uses the most memory out of any of the options. In addition, it would be somewhat hard to follow because of the shear amount of data.
+
+The nicest thing you can say about it is that it stores all the data in one table, you don't have any interdependencies to worry about.
+
+Option 2 is much better. It at least breaks the data up into chunks that make sense for the type of vehicle. Each vehicle type has everything about it in one place. A lot of the similar data is used in similar types of vehicles. The car and truck tables are very similar while the plane is quite a bit different.
+
+After looking at option 2 for a while, one would think that it would be nice if there was a single table that kept all the common data in a central location.
+
+This is what is great about option 1. One 'master' vehicle table that keeps track of the common data. Unfortunately horsepower and name are the the only variables common across all known platforms. So you really don't get much. The drawback here is that it uses a foreign key reference, so you have do a join on the vehicle and object tables to find the object's name.
+
+Honestly I think the way I would want to go is option 2. Based on the vague specs we have at this point option 2 is very flexible. If we end up with more vehicle types we won't be constrained by the foreign key table of option 1. Option 3 is just bad design. We would be adding columns everytime a different type of vehicle cropped up.
+

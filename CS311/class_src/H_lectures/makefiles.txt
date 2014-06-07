@@ -1,0 +1,13 @@
+makefiles
+
+automated build system originally intended to c code, now used for lots more
+
+basic terminology:
+what is a rule, what is a target, what is a dependancy
+
+typical content:
+rules, targets, dependancies, variables
+
+searches for makefile or Makefile by default
+
+INDENTATIONS MUST BE TABSSSSSSSS

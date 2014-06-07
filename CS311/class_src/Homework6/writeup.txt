@@ -1,0 +1,18 @@
+#
+#   Name:           Eric Rouse
+#   Email Address:  rousee@onid.orst.edu
+#   Class Name:     CS311-400
+#   Assignment:     Homework #6
+#
+
+To partition the work efficiently accross multiple threads and processes I used a semaphore lock.
+
+Each fork or thread has a primary while loop that checks for primes using the sieve of erasthones.
+
+This loop calls a function that locks and then returns the next possible prime candidate.
+
+It does not unlock the semaphore. The unlock is performed by the calling function.
+
+So, the other functions block and wait for the calling function to finish. For trivial calculations the first fork/thread does most of the work. As it takes longer to validate the primality another function gets the chance to check the next prime.
+
+In this way work is distributed most optimally. Because it is impossible to know which loops with terminate first, as some will discover non-primes quickly.

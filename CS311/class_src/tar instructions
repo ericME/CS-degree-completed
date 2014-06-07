@@ -1,0 +1,20 @@
+1.
+Put all your files for this assignment into a directory called 
+Homework#. The Homework# directory can have additional subdirectories, such as one called Question6. Do not put spaces in the 
+directory name. I do not like spaces in directory names. In general, do 
+not put spaces in filenames or directory names. I know Windows (and 
+Mac) makes it easy to put spaces in filenames and directory names, but 
+don’t do it for this class. I will deduct points from your assignment
+(this one an the following ones) if I must rename directories or files 
+that have spaces in them.
+2.
+Change directory up one level above the Homework# directory.
+3.
+From the directory above Homework#, enter the following command. 
+Where <yourname> is replaced with your onid/eecs login name (mine 
+is chaneyr).
+tar cvfj Homework#-<yourname>.tar.bzip Homework#
+In my case, I would create a single tar.bzip file named 
+Homework#-chaneyr.tar.bzip
+
+exract with tar xvfj

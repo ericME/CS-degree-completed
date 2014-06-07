@@ -1,0 +1,9 @@
+
+The topics that will be on the final will be: 
+propositions
+direct proofs
+contrapositive proofs
+set, subset, and a couple set laws
+induction and recursive definitions
+graphs
+There may or may not be a formal guide to study for the final, I imagine you can find the sections for this in the book and practice using the problems in the homework and solved in the back of the book, just pick a couple to make sure you have the right idea or approach and then ask or look up any that you have any troubles with.

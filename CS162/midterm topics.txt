@@ -1,0 +1,11 @@
+
+To be thorough in listing this all over for those who have exams soon (I thought I posted this Wednesday afternoon or evening):
+
+The list of topics is (mostly in this order, but not all are covered):
+Declaration and instantiation of an object
+Some Java specific concepts such as encapsulation, abstract classes, interfaces, inheritance, polymorphism
+A little code writing (does not need to compile, just needs to be the right idea) of constructors and other methods
+Design of a piece of code (no bodies of code, just stubs)
+JUnit testing (design and implementation of tests)
+A little debugging (some terms used in the debugging lab and lecture)
+and an extra credit question on recursion (the required question got moved to the final, so be ready for it)

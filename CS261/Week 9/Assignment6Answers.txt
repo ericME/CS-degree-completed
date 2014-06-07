@@ -1,0 +1,16 @@
+Eric Rouse
+Assignment 6 Answers
+
+1. Any word that has all the same letters in it will hash to the same value under stringHash1. So, "seven", "sveen", "neves" and all other iterations will has to 545.
+
+2. SringHash2 is better in that it performs a mulitplication based on letter location. So, location of letters matter in this hash with means "seven", "sveen" and "neves" all hash to different locations.
+
+3. It shouldn't. Size should always return the number of items added to the collection. This is true whether a collision occurs or not.
+
+4. Yes. Since hashString1 will collide more often than hashString2 it will have less table load. More items will be chained at each table location.
+
+5. Yes, for the same reasons as #4.
+
+6. Yes. The prime number doesn't have any factors other than itself and 1. This means that there are less numbers that mod to the same place (like 0). The bucket distribution will be more even.
+
+7. Larger size tables take longer to hash than smaller size tables.

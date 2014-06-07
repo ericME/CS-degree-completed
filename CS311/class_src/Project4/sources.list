@@ -1,0 +1,34 @@
+#Wikipedia TSP: http://en.wikipedia.org/wiki/Travelling_salesman_problem
+#stack overflow: http://stackoverflow.com/questions/7159259/optimized-tsp-algorithms
+#Wikipedia Prim: http://en.wikipedia.org/wiki/Prim%27s_algorithm
+#Wikipedia Hamilton: http://en.wikipedia.org/wiki/Hamiltonian_path and http://en.wikipedia.org/wiki/Hamiltonian_circuit
+#Matching: http://mathworld.wolfram.com/PerfectMatching.html
+#Piazza Post: https://piazza.com/class/hp5ugh2jc1v21u?cid=167
+#2-opt: http://en.wikipedia.org/wiki/2-opt
+   # repeat until no improvement is made {
+   #     start_again:
+   #     best_distance = calculateTotalDistance(existing_route)
+   #     for (i = 0; i < number of nodes eligible to be swapped - 1; i++) {
+   #         for (k = i + 1; k < number of nodes eligible to be swapped; k++) {
+   #             new_route = 2optSwap(existing_route, i, k)
+   #             new_distance = calculateTotalDistance(new_route)
+   #             if (new_distance < best_distance) {
+   #                 existing_route = new_route
+   #                 goto start_again
+   #             }
+   #         }
+   #     }
+   # }
+
+
+   from collections import defaultdict
+
+   def mtsp(G, r):
+   	T, C = defaultdict(list), []
+   	for c, p in prim (G,r).items():
+   		T[p].append(c)
+	def walk(r):
+		C.append(r)
+		for v in T[r]: walk(v)
+	walk(r)
+	return C

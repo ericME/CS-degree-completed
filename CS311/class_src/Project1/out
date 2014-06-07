@@ -1,0 +1,9 @@
+alg1, length:  10  time:  0.021696090698242188
+alg2, length:  10  time:  0.0054836273193359375
+alg3, length:  10  time:  0.03361701965332031
+alg1, length:  100  time:  1.2652873992919922
+alg2, length:  100  time:  0.03838539123535156
+alg3, length:  100  time:  0.34499168395996094
+alg1, length:  1000  time:  118.89171600341797
+alg2, length:  1000  time:  0.3540515899658203
+alg3, length:  1000  time:  3.9479732513427734

@@ -1,0 +1,30 @@
+    applications
+-----------------
+    library calls
+-----------------  <--- general application programming lives here
+    system calls
+-----------------
+    kernal
+    
+POSIX -- Portable Operating Systems Interface X
+
+posix-2001; important, real time mechanisms, semaphores, conditional variables, etc, posix IPC
+
+Windows is not POSIX
+
+SUS - Single UNIX specification
+
+SUS v3/v4 (we are on v3 for 311)
+
+very few OSes comply fully with these standards
+
+
+-----------------
+    GUI ||  shell
+-----------------
+    kernal
+    
+In UNIX everything is a file (except the things that aren't)
+    (network card is an example of not a file)
+    
+

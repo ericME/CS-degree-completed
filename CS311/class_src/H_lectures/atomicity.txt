@@ -1,0 +1,27 @@
+atomicity
+race conditions
+file descriptors, open files, on disk blocks
+
+first half of ch. 5
+
+atomic operations
+there are a couple of variables
+
+deposit
+A                        B
+read balance            read balance
+read deposit            read deposit
+add balance, deposit    add balance, deposit
+write back balance      write back balance
+
+there is a diference between teh serial case and the parallel case
+
+if parallel, then A transaction might not update before B transaction.
+
+RACE CONDITION
+order of operations dictate the end result
+order of operations must be independant of final result - atomic operation
+add balance and write back as one step
+a cannot interupt b and b cannot interupt a
+
+atomic operations either completely succede or completely fail
