@@ -1,0 +1,139 @@
+Hello world!
+
+If you don't mind, type your name below to let me know you are here. I'll start:
+
+Eric // Hi! It works! :)
+Lauren// Yup!
+
+main.c
+#include <stdio.h>
+#include <stdlib.h>
+#include "implementation.h"
+
+int main(void) {
+    struct donor_info *test_di;
+//void test_donor_info(struct donor_info *di, int exp_id, char* exp_fname, char* exp_lname, char* exp_geneseq)
+    test_di = addDonor(24);
+    test_donor_info(test_di, 25, "Test", "McTesterson", "GATTC");
+    return 0;
+}
+
+
+implementation.c
+#include "implementation.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+void test_donor_info(struct donor_info *di, int exp_id, char* exp_fname, char* exp_lname, char* exp_geneseq) {
+
+    int error = 0;
+    
+    if(di->id != exp_id) {
+        printf("Test failed! ID was: %d, expected: %d\n", di->id, exp_id);  
+        error = 1;
+    }
+
+    if(strcmp(di->first_name, exp_fname) != 0) {
+        printf("Test failed! First names do not match.\n");
+        error = 1;
+    }
+
+    if(strcmp(di->last_name, exp_lname) != 0) {
+        printf("Test failed! Last names do not match.\n");
+        error = 1;
+    }
+
+    if(strcmp(di->gene_sequece, exp_geneseq) != 0) {
+        printf("Test failed! Gene sequences do not match.\n");
+        error = 1;
+    }
+
+    if(error == 0) {
+        printf("All tests passed.\n");
+    }
+
+    return;
+}
+
+struct donor_info *addDonor(int last_id) {
+
+    struct donor_info *di = (struct donor_info*)malloc(sizeof(struct donor_info));
+
+    int i;
+  
+    printf("who donates this stuff (first name)?\n");
+    scanf("%s", di->first_name);
+
+    printf("who donates this stuff (last name)?\n");
+    scanf("%s", di->last_name);
+
+    for(i = 0; i < GENESEQUENCE_SIZE; i++) {
+        printf("What is entry %d in the gene sequence?\n", i + 1);
+        scanf(" %c", &di->gene_sequence[i]);
+        //verify input?
+    }
+
+    di->id = last_id + 1;
+   
+    printf("Donor added!\n");
+    printf("ID: %d\n", di->id);
+    printf("First name: %s\n", di->first_name);
+    printf("Last name: %s\n", di->last_name);
+    printf("Gene sequence: %s\n", di->gene_sequence);
+    
+    return di;
+}
+implementation.h
+#ifndef IMPLEMENTATION_H
+#define IMPLEMENTATION_H
+
+#define GENESEQUENCE_SIZE 5
+
+struct donor_info {
+  int id;
+  char first_name[256];
+  char last_name[256] ;
+  char gene_sequence[GENESEQUENCE_SIZE] ;
+};
+struct donor_info *addDonor(int last_id);
+void test_donor_info(struct donor_info *di, int exp_id, char* exp_fname, char* exp_lname, char* exp_geneseq);
+
+#endif
+
+unit_test.makefile
+CFLAGS=-Wall
+LIBS=-lcheck
+
+all: unit_tests
+
+unit_tests: main.o implementation.o
+    gcc -o unit_tests main.o implementation.o
+
+main.o: main.c implementation.h
+    gcc $(CFLAGS) -c main.c
+
+implementation.o: implementation.c implementation.h
+    gcc $(CFLAGS) -c implementation.c
+
+test: unit_tests-test
+    ./unit_tests-test
+
+unit_tests-test: implementation-test.o implementation.o
+    gcc -o unit_tests-test implementation.o implementation-test.o $(LIBS)
+
+implementation-test.o: implementation-test.c implementation.h
+    gcc $(CFLAGS) -c implementation-test.c
+
+implementation-test.c: implementation-test.check
+    checkmk implementation-test.check >implementation-test.c
+
+clean:
+    rm -f *.o unit_tests-test
+
+implementation-test.check
+#include "implementation.h"
+
+#test first
+    fail_unless(addDonor(24)->id == 25, "Wrong ID returned"); 
+
