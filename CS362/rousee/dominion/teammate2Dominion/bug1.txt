@@ -1,0 +1,71 @@
+CS362 Fall 2014
+Barbara Hazlett
+bugs found in assignment 3
+
+*id:  scorefor001 
+bug description:
+	In scoreFor(), when computing the score from deck the code was:
+	//score from deck
+	for (i = 0; i < state->discardCount[player]; i++) 
+
+	It has been fixed to be:
+	//score from deck
+	for (i = 0; i < state->deckCount[player]; i++) 
+	
+found by running:
+	unittest3, test 1, asserted on line 86 due to player 1 score != 3, this is because the cards in the deck 
+	were not counted
+
+status: bug has been fixed in dominion.c code
+
+*id:  scorefor002
+bug description:
+	The score for the garden card is calculated incorrectly.  The score for each garden card is one point for every
+	10 cards that the player has.  So instead of calculating it separately for discard, deck and hand cards, it is 
+	based on the total cards.
+	
+found by running:
+	unittest3, test 2, asserted on 106 because the score for player 1 is 13 instead of 14.  This is because the 
+	score for the garden card (1 point) was not added.
+	
+status: bug has been fixed in dominion.c code
+
+*id:  smithy001
+bug description:
+	After the smithy is played the trashFlag is set to 1 (to trash it) instead of 0 (to discard it).
+
+found by running:
+	cardtest1, test 1, asserted on line 57 because the expected number of discarded cards did not equal the 
+	calculated number 
+	
+status:  bug has been fixed temporarily so that the unittestresults.out file can be run for assignment 3	
+
+
+*id:  adventurer001
+bug description:
+	When cards are drawn, silver cards do not count as treasure cards.  
+	
+found by running:
+	cardtest2, test 3, asserted on line 93 because more cards were drawn from the deck than expected
+	
+status:  bug has been fixed temporarily so that the unittestresults.out file can be run for assignment 3
+
+*id:  adventurer002 (submitted 11/1/2014)
+bug description:
+	discardCount does not increment 
+	
+found by running:
+	randomtestadventurer.c with all asserts implemented (currently commented out for assignment 4)
+	
+status:  not fixed
+
+*id:  adventurer003 (submitted 11/1/2014)
+bug description:
+	segmentation fault when initial deckCount[player] set to 0
+	
+found by running:
+	randomtestadventurer.c with initial deckCount[player] set to 0
+	
+status:  not fixed
+
+

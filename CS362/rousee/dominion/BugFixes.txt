@@ -1,0 +1,38 @@
+Bugs teammates found:
+1. When smithy card is played, four cards are drawn instead of three.
+2. When council_room card is played, number of buys is 1 instead of 2.
+3. Playing the council room card results in number of buys being one less than it should be.
+4. Playing the village card results in an incorrect number of actions.
+
+Fix for Bug 1:
+line 780:	for (i = 0; i <= 3; i++) {
+changed to:	for (i = 0; i < 3; i++) {
+
+Fix for Bug 2:
+line 678: 	state->numBuys;
+changed to:	state->numBuys++;
+
+Fix for Bug 3:
+see bug 2
+
+Fix for Bug 4:
+line 791:	state->numActions = state->numActions * 2;
+changed to: state->numActions = state->numActions + 2;
+
+Other fixes:
+line 647:	int temphand[0]
+changed to:	int temphand[MAX_HAND]
+
+
+line 825:	card_not_discarded == 0;
+changed to:	card_not_discarded = 0;
+
+
+line 695:	state->hand[currentPlayer][i] = 0;
+changed to:	state->hand[currentPlayer][i] = -1;
+
+line 774:	return -2;
+changed to:	return 0;
+
+line 61:	if ((j != i && kingdomCards[j] == kingdomCards[i]) || (kingdomCards[j] )
+changed to: if ((j != i && kingdomCards[j] == kingdomCards[i]) || (kingdomCards[j] < curse || kingdomCards[j] > treasure_map) )

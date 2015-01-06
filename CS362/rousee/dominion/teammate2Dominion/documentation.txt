@@ -1,0 +1,45 @@
+CS362 Fall 2014
+Assignment 2
+Barbara Hazlett
+
+Documentation for smithy, adventurer, discardCard() and updateCoins()
+
+*smithy card* 
+
+The smithy card is an action card and can be bought for 4 coins.  When the smithy is played,
+the player draws three cards.
+
+The code for smithy has already been refactored.  The zzzsmithycardplay function has a for loop 
+that calls the drawCard function three times.  The function then calls discardCard to discard 
+the smithy card.
+
+*adventurer card*
+
+The adventurer card is an action card that can be bought for 6 coins. When the adventurer card is
+played, cards are revealed from the players deck until two treasure cards are revealed. The treasure
+cards are placed in the player's hand but all of the other revealed cards are discarded.
+
+The code for adventurer has already been refactored.  The zzzadventurecardplay function  
+first has a while loop that runs until there are two treasure cards drawn.  In the while 
+loop if the deck is empty the discard pile is shuffled and added to the player's deck, then a card is
+drawn using drawCard.  The variable cardDrawn is set to the top card.  If cardDrawn is a treasure card
+then drawntreasure is incremented by 1, if not, the top card is removed and z (the count of the
+non-treasure cards) is incremented by 1.  When the first while loop is complete the function loops
+through the revealed cards and discards them. 
+ 
+*discardCard()*
+
+The discardCard() function removes a card from the player's hand and places it in the played pile or
+removes it from the game. First it checks to see if the trashFlag is set. If it is not the card is added 
+to the played pile.  If it is set then the played card is set to -1.  Then there is an if statement that
+checks if the card is the last card in the player's hand or if the player only has one card in their hand. 
+If either is true then the handCount is decremented by 1.  Else the discarded card is swapped with the last
+card and the handCount is decremented by 1.  At the end of the function 0 is returned.
+
+*updateCoins()*
+
+This method first sets the number of coins (state->coins) that the player has to zero.  It then loops
+through each card in the player's hand and adds 1 to state->coins if the card is copper, adds 2 to 
+state->coins if the card is silver, and adds 3 to state->coins if the card is gold.  Finally it adds any
+bonus number to state->coins and returns 0.
+

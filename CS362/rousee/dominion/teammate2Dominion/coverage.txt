@@ -1,0 +1,67 @@
+CS362 Fall 2014
+Barbara Hazlett
+coverage for assignment 3
+
+The combined coverage for all tests for dominion.c is:
+39.17% line coverage
+
+cardtest1.c
+lines executed: 25.50%
+branches executed: 25.18% 
+100% statement coverage of the smithy card code
+
+cardtest2.c
+lines executed: 24.33%
+branches executed: 26.14%
+Less than 100% coverage of the adventurer test code, many lines not executed.
+
+cardtest3.c
+lines executed: 25.50%
+branches executed: 24.70%
+100% statement coverage of the village card code
+
+cardtest4.c
+lines executed: 26.00%
+branches executed:  26.62 %
+100% statement coverage of the council room code 
+
+
+unittest1.c
+lines executed: 18.33%
+branches executed: 16.79%
+100% statement coverage of the endTurn() code
+
+
+unittest2.c
+lines executed: 16.33%
+branches executed: 17.27%
+100% statement coverage of the isGameOver() code
+
+
+unittest3.c
+lines executed: 18.50%
+branches executed: 23.02%
+Does not have 100% statement coverage of the scoreFor() code because
+the discardCount > 0 is not covered.
+
+-:  433:  //score from discard
+       12:  434:  for (i = 0; i < state->discardCount[player]; i++)
+        -:  435:    {
+    #####:  436:      if (state->discard[player][i] == curse) { score = score - 1; };
+    #####:  437:      if (state->discard[player][i] == estate) { score = score + 1; };
+    #####:  438:      if (state->discard[player][i] == duchy) { score = score + 3; };
+    #####:  439:      if (state->discard[player][i] == province) { score = score + 6; };
+    #####:  440:      if (state->discard[player][i] == great_hall) { score = score + 1; };
+        -:  441:      //if (state->discard[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); }; code is wrong
+    #####:  442:	  if (state->discard[player][i] == gardens) { total_gardens += 1; }; 
+        -:  443:    }
+
+
+unittest4.c
+lines executed: 17.17%
+branches executed: 16.79%
+100% statement coverage of the gainCard() code
+
+ 
+
+

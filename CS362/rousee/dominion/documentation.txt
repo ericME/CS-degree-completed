@@ -1,0 +1,39 @@
+documentation.txt
+
+//Documentation for smithy and adventurer cards
+
+#SMITHY
+In dominion.c the smithy is played using  zzzsmithycardplay() function.
+This function is invoked from the case switch statement the cardEffect() function when the card passed to cardEffect is of type smithy.
+
+The zzzsmithycardplay() returns void and requires:
+    int i, draw counter, lets player draw three cards from deck
+    int currentPlayer, numeric value for current player
+    int handPos, numeric value for the position in the hand where the card is located
+    struct gameState* state, the structure that holds all info about the game, players, cards, played cards, discarded cards, etc.
+
+When invoked, the smithy function draws three cards and then discards itself from the hand.
+
+#ADVENTURER
+In dominion.c the adventurer is played using  zzzadventurercardplay() function.
+This function is invoked from the case switch statement in the cardEffect() function when the card passed to cardEffect is of type adventurer.
+
+The zzzadventurercardplay() function returns void and requires:
+    int drawntreasure, set to 0 from cardEffect, used to count up the draws
+    int currentPlayer, numeric value for current player
+    int cardDrawn, numeric value for a card pulled from the players deck
+    int temphand[MAX_HAND], a temporary place to hold cards drawn from the players deck
+    int z, index value for temphand
+    struct gameState* state, the structure that holds all info about the game, players, cards, played cards, discarded cards, etc.
+
+When invoked, the adventurer function draws cards one at a time from the players stack until it finds two treasure cards. If there aren't two treasure cards it adds card from the deck to the players stack. It continues the cylce until two treasure cards are found and then discards all the other cards it picked up.
+
+#discardCard() 
+This helper function takes the card at the given hand position and checks if it is marked as trash, if it is not it adds the card to the played pile.
+
+Then it removes the card from the players hand and reduces the card count by one. If the player has more cards the discarded card is replaced with the last card in their hand.
+
+
+#updateCoins()
+
+This helper function increments through the cards in the given players hand and compares them to the three treasures, copper, silver and gold. It adds the appropriate amount (1, 2 and 3 respectively) to the persons coins. If a bonus was specified that is added also.

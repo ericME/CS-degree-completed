@@ -1,0 +1,38 @@
+Lauren Richard
+CS362 Assigntment 2
+Refactor.txt
+Refactoring:
+1) Smithy: already refactored zzzsmithycardplay
+2) Adventurer: already refactored zzzadventurercardplay
+3) Great hall: zzzgreat_hallcardplay
+4) Baron: zzzbaroncardplay
+5) Minion: zzzminioncardplay
+6) Outpost: zzzoutpostcardplay
+7) Salvager: zzzsalvagecardplay
+Bugs:
+1) Smithy:
+Changed for (i = 0; i < 3; i++) {
+		drawCard(currentPlayer, state);
+	}
+To for (i = 1; i < 3; i++) {
+		drawCard(currentPlayer, state);
+	}
+2) Adventurer:
+a. Changed while (drawntreasure < 2) to while (drawntreasure < 1)
+b. Changed z = z - 1; to z++
+3) Baron:
+a. Changed if (choice1 > 0) to if (choice1 < 0)
+b. Changed int card_not_discarded = 1 to int card_not_discarded = -1
+4) Minion:
+a. Changed if (choice1){ state->coins = state ->coins +2;} to if (choice1){ state->coins = state ->coins +4;}
+b. Changed for (i = 0; i < 4; i++)
+      {
+        drawCard(currentPlayer, state);
+      }
+        to for (i = 0; i < 2; i++)
+      {
+        drawCard(currentPlayer, state);
+      }
+
+
+

@@ -1,0 +1,9 @@
+randomstring.txt
+
+My random tester uses a limited alphabet to unlock the various states.
+
+The first 8 states are based on a sequence of chars, so I limited the inputChar() function to only generate values from this small set of characters. Specifically: '[','(','{',' ','a','x','}',')' and ']'. So when inputChar is called it returns one of these characters.
+
+The same goes for the 9th state which needs the string "reset" to be passed from inputString(). I select from an alphabet of 4 letters, r, e, s and t. When inputString is called I select 5 letters, at random form this set of 4.
+
+The code takes on the order of 1000 iterations to complete.

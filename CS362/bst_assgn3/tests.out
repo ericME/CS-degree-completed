@@ -1,0 +1,7 @@
+Result for running BST tests:
+unittest1.c:
+containsBSTree(): PASS when test containing 50 as root
+containsBSTree(): PASS when test containing 13 as left of root
+containsBSTree(): PASS when test containing 110 as right of root
+containsBSTree(): PASS when test containing 10 as left of left of root
+containsBSTree(): PASS when test containing 111, which is not in the tree

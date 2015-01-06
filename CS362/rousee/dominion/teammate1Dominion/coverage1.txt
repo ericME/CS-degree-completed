@@ -1,0 +1,42 @@
+Lauren Richard
+CS362 Assignment 3
+Coverage
+
+Total coverage in dominion.c:
+Lines executed:26.51% of 596
+Branches executed:23.98% of 417
+Taken at least once:20.14% of 417
+Calls executed:17.00% of 100
+This indicates that for this to be a fully-tested program there would need to be significantly more tests. The tests I?ve already written cover only a small portion of the program. 
+
+Coverage of cardtest1: Adventurer
+called 4 returned 100% blocks executed 64%
+One branch wasn?t taken where the deckCount < 1. This means that I did not test every possible scenario and should develop another test case to cover for when there are no cards in the deck (ie need to be shuffled). Another situation where branches weren?t taken is when looking at the cardDrawn, only where cardDrawn == copper was taken, indicating that the situations where it equaled silver or gold weren?t tested.  I also didn?t test where the player discards all the cards in play in that hand. Clearly this card needs further testing. 
+
+Coverage of cardtest2: Council Room
+called 1 returned 100% blocks executed 100%
+This test did not find a bug. All of the loops executed properly and branches were taken appropriately. Because each branch was taken I know that I have executed each scenario at least once. This test had good coverage. 
+
+Coverage of cardtest3: Village
+called 1 returned 100% blocks executed 100%
+This test did not find a bug, each actionable line was executed. There were no branches. Because each line was executed I know that each scenario is executed. 
+
+Coverage of cardtest4: Smithy
+called 2 returned 100% blocks executed 100%
+Every branch was taken during this function, indicating that every scenario is taken into consideration. 
+
+Coverage of unittest1: discardCard
+called 11 returned 100% blocks executed 100%
+Each branch was taken, so I know I have covered the main scenarios. Some of the branches were executed very few times, perhaps even only once, so more tests should be run to prove that they work in more combinations. 
+
+Coverage of unittest2: gainCard
+called 5 returned 100% blocks executed 100%
+Each branch was taken. Again, some of the branches were taken only once, so more tests should be run to ensure that this function works in multiple situations. 
+
+Coverage of unittest3: isGameOver
+called 3 returned 100% blocks executed 100%
+Each branch was taken. Some of the branches were taken only once, so the test should be repeated. 
+
+Coverage of unittest4: numHandCards
+called 11 returned 100% blocks executed 100%
+There are no branches, but each line of the code is executed.  

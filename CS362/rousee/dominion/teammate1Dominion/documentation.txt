@@ -1,0 +1,120 @@
+Lauren Richard
+CS362 Assignment 2
+Documentation.txt
+
+Documentation comments are shown in bold
+
+Smithy
+void zzzsmithycardplay(int i, int currentPlayer, int handPos,
+		struct gameState* state) {
+	//+3 Cards
+	for (i = 0; i < 3; i++) {
+		drawCard(currentPlayer, state);
+	} Draw 3 cards
+	//discard card from hand
+	discardCard(handPos, currentPlayer, state, 0);
+}
+The smithy card is an action card that allows the player to draw three more cards from their deck to use in their hand. Cards are all discarded at the end of the turn.  
+
+Adventurer
+void zzzadventurercardplay(int drawntreasure, int currentPlayer, int cardDrawn,
+		int temphand[MAX_HAND], int z, struct gameState* state) {
+	while (drawntreasure < 2) { The player draws cards until they draw two treasure cards
+		if (state->deckCount[currentPlayer] < 1) {
+			//if the deck is empty we need to shuffle discard and add to deck
+			shuffle(currentPlayer, state);
+		}
+		drawCard(currentPlayer, state);
+		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]
+				- 1]; //top card of hand is most recently drawn card.
+		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+			drawntreasure++;
+		If the card drawn is a treasure card, then add one to the count of treasure drawn. 
+		else {
+			temphand[z] = cardDrawn;
+			state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+			z++;
+		}If the card drawn isn?t a treasure card, then put it in a temporary hand.
+	}
+	while (z - 1 >= 0) {
+		state->discard[currentPlayer][state->discardCount[currentPlayer]++] =
+				temphand[z - 1]; // discard all cards in play that have been drawn
+		z = z - 1;
+	}Discard the cards from the temporary hand
+}
+The adventurer card is an action card that lets you keep drawing cards from your deck until you get two treasure cards. The two treasure cards are put into your hand, and the other drawn cards are discarded. 
+
+discardCard() method
+int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+{
+	
+  //if card is not trashed, added to Played pile 
+  if (trashFlag < 1)
+    {
+      //add card to played pile
+      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+      state->playedCardCount++;
+    }
+At the end of the round cards in the hand are put in the played pile unless the player chooses to trash them. Trashed cards cannot be played again ever.
+	
+  //set played card to -1
+  state->hand[currentPlayer][handPos] = -1;
+	
+  //remove card from player's hand
+  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+    {
+      //reduce number of cards in hand
+      state->handCount[currentPlayer]--;
+    }
+  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
+    {
+      //reduce number of cards in hand
+      state->handCount[currentPlayer]--;
+    }
+  else 	
+    {
+      //replace discarded card with last card in hand
+      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+      //set last card to -1
+      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+      //reduce number of cards in hand
+      state->handCount[currentPlayer]--;
+    }
+	
+  return 0;
+}
+Played cards are added to a discard pile. 
+
+updateCoins()
+int updateCoins(int player, struct gameState *state, int bonus)
+{
+  int i;
+	
+  //reset coin count
+  state->coins = 0;
+Each round starts with 0 coins, then coins are added based on the cards in the player?s hand
+
+  //add coins for each Treasure card in player's hand
+  for (i = 0; i < state->handCount[player]; i++)
+    {
+      if (state->hand[player][i] == copper)
+	{
+	  state->coins += 1;
+	}
+      else if (state->hand[player][i] == silver)
+	{
+	  state->coins += 2;
+	}
+      else if (state->hand[player][i] == gold)
+	{
+	  state->coins += 3;
+	}	
+    }
+Copper is worth 1 coin, silver is worth 2 coins and gold is worth 3 coins. Coins are not carried over between rounds, but must be played during the round in which they are drawn. 	
+
+  //add bonus
+  state->coins += bonus;
+Some action cards give bonus coins to add to hand. 
+
+  return 0;
+}

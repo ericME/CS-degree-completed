@@ -1,0 +1,32 @@
+CS362 Fall 2014
+Assignment 2
+Barbara Hazlett
+
+The five cards that I refactored are:  
+
+*great_hall*
+added bug to add 2 actions instead of 1 action
+
+*outpost*
+no bug added
+
+*sea_hag*
+no bug added
+
+*salvager*
+added bug to gain coins equal to trashed card plus 1, instead of just trashed card value
+
+*minion*
+added bug to have other players draw 3 cards instead of 4 (changed j <4 to j < 3)
+
+
+The bugs that I added to smithy and adventurer are:
+
+****NOTE:  I removed these bugs for assignment 3 so that the unittestresult.out file could be produced.  I will
+put them back in after the assignment is graded ****
+
+*smithy*
+changed the trashFlag in discardCard() from 0 to 1
+
+*adventurer*
+removed 'cardDrawn == silver' from if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)

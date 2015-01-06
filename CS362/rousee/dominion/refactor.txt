@@ -1,0 +1,11 @@
+refactor.txt
+
+//notes on the refactoring of 5 cards + smithy and adventurer
+Card | Case        | Function Name           | Bug Notes
+  1. | smithy      | zzzsmithycardplay()     | l780: for (i = 0; i <= 3; i++) should be for (i = 0; i < 3; i++)
+  2. | adventurer  | zzzadventurercardplay() | l647: int temphand[0] should be int temphand[MAX_HAND]
+  3. | baron       | zzzbaroncardplay()      | l825: card_not_discarded == 0; should be card_not_discarded = 0;
+  4. | village     | zzzvillagecardplay()    | l791: state->numActions = state->numActions * 2; should be state->numActions = state->numActions + 2;
+  5. | feast       | zzzfeastcardplay()      | l695: state->hand[currentPlayer][i] = 0; should be state->hand[currentPlayer][i] = -1;
+  6. | council_room| zzzcouncilroomcardplay()| l678: state->numBuys; should be state->numBuys++;
+  7. | mine        | zzzminecardplay()       | l774: return -2; should be return 0;

@@ -1,0 +1,6 @@
+bug1.txt
+
+found bug in smithy card, doesn't draw enough cards
+the adventure card drawntreasure doesn't work because the temp hand is too small
+
+there is something seriously wrong with card implimentations.

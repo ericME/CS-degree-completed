@@ -1,0 +1,51 @@
+coverage1.txt
+
+unittest1 is pretty terrible:
+Lines executed:2.23% of 584
+Branches executed:0.00% of 417
+Taken at least once:0.00% of 417
+Calls executed:0.00% of 97
+
+
+unittest2 is better:
+Lines executed:22.09% of 584
+Branches executed:25.66% of 417
+Taken at least once:16.31% of 417
+Calls executed:14.43% of 97
+
+
+unittest3 executes 17.47% of dominion.c
+ines executed:17.47% of 584
+Branches executed:16.31% of 417
+Taken at least once:14.63% of 417
+Calls executed:7.22% of 97
+
+unittest4 covers 16.27% of dominion.c
+Lines executed:16.27% of 584
+Branches executed:15.83% of 417
+Taken at least once:13.43% of 417
+Calls executed:7.22% of 97
+
+cardtest1 executes 24.66% of dominion.c
+Lines executed:24.66% of 584
+Branches executed:19.66% of 417
+Taken at least once:15.83% of 417
+Calls executed:13.40% of 97
+
+cardtest2 executes 24.83% of dominion.c
+Lines executed:24.83% of 584
+Branches executed:20.62% of 417
+Taken at least once:17.27% of 417
+Calls executed:13.40% of 97
+
+cardtest3 executes 25.17% of dominion.c
+Lines executed:25.17% of 584
+Branches executed:20.62% of 417
+Taken at least once:16.79% of 417
+Calls executed:14.43% of 97
+
+cardtest4 executes 22.09% of dominion.c
+Lines executed:22.09% of 584
+Branches executed:18.23% of 417
+Taken at least once:14.39% of 417
+Calls executed:12.37% of 97

@@ -1,0 +1,16 @@
+unit test 1:
+
+SIZEOFLIST = 10000000;
+testarray[SIZEOFLIST];
+
+
+//create a linked list test and answer array
+for (i = 1; i < SIZEOFLIST; i++ )
+	test_val = rand(INT_MIN, INT_MAX)
+	insert_node_pose(i, test_val ); //insert a node of random value
+	testarray.append(test_val); //store the test value
+
+//test each node value with the assigned value
+for (i = 1; i < SIZEOFLIST; i++)
+	assert(node[i]->value == testarray[i-1])
+

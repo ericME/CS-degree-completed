@@ -1,0 +1,5 @@
+Lauren Richard
+Cs362 Assignment 3
+Bugs:
+* Adventurer: Function is not adding two treasure cards to hand. 
+* Smithy: Function is not adding 3 cards to hand. 

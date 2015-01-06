@@ -1,0 +1,191 @@
+CS362 Homework 5
+Eric Rouse
+Bug report for teammate 1: Lauren Richard
+Bug ID: LaurenDominion-1
+Program: dominion.c
+Version: 999
+
+Description:
+The initializeGame() doesn't recognize when it is passed faulty kingdom card.
+
+Sequence of events:
+1) Initialize a game state with the following values:
+       Int randSeed = 1000;
+       Int numPlayers = 2 thru MAX_PLAYERS;
+       Int k[10] = {-99, adventurer, feast, gardens, mine
+               , remodel, smithy, village, baron, great_hall};
+
+       Struct gameState * game
+       Struct gameState * store_game;
+       InitializeGame(numPlayers, k, randSeed, game);
+
+2) Should return -1 for invalid card, but returns 0.
+3) Print results.
+
+Print out:
+unittest3.c
+initializeGame() | bad deck, return fail | players 2 | 
+  ***check for expected value: FAIL
+  expected return value of -1, but was 0
+
+initializeGame() | bad deck, return fail | players 3 | 
+  ***check for expected value: FAIL
+  expected return value of -1, but was 0
+  
+initializeGame() | bad deck, return fail | players 3 | 
+  ***check for expected value: FAIL
+  expected return value of -1, but was 0
+
+and so on...
+
+Severity: high
+Priority: low
+_____________________________________________________________________________________
+Bug ID: LaurenDominion-2
+Program: dominion.c
+Version: 999
+
+Description: 
+Looks like the smithy is only drawing two cards instead of three. 
+
+Sequence of events:
+1) Initialize a game state with the following values:
+       Int newCards = 3;
+       Int discarded = 1;
+       Int randSeed = 1000;
+       Int numPlayers = 2 thru MAX_PLAYERS;
+       Int kingdomCards[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+      sea_hag, tribute, smithy, council_room}};
+
+       Struct gameState * game
+       Struct gameState * store_game;
+       InitializeGame(numPlayers, k, randSeed, game);
+2) Copy game into store_game
+3) Play smithy card with zzzsmithycardplay(0, thisPlayer, handpos, store_game);
+4) Check if game->handCount[thisPlayer] + newCards - discarded is the same as store_game->handCount[thisPlayer]
+5) Print results.
+
+Print out:
+cardtest1.c:
+----------------- Testing Card: smithy -----------------
+TEST 1: No need to shuffle deck cards
+zzzsmithycardplay() | handCount | player 0 | 
+  ***check for expected value: FAIL
+  Expected 7 handCount, but was 6
+zzzsmithycardplay() | deckCount | player 0 | 
+  ***check for expected value: FAIL
+  Expected 2 deckCount, but was 3
+zzzsmithycardplay() | handCount | player 0 | 
+  ***check for expected value: PASS
+TEST 2: Need to shuffle deck cards
+zzzsmithycardplay() | handCount | player 0 | 
+  ***check for expected value: FAIL
+  Expected 2 handCount, but was 1
+zzzsmithycardplay() | deckCount | player 0 | 
+  ***check for expected value: FAIL
+  Expected 6 deckCount, but was 1
+zzzsmithycardplay() | cardCount | player 0 | 
+  ***check for expected value: PASS
+File 'dominion.c'
+Lines executed:33.52% of 728
+Branches executed:29.16% of 415
+Taken at least once:20.72% of 415
+No calls
+dominion.c:creating 'dominion.c.gcov'
+Severity: high
+Priority: high
+
+***************************************************************************************************************************
+
+Bug report for teammate 2: Barbara Hazlett
+Bug ID: BarbaraDominion-1
+Program: dominion.c
+Version: 999
+
+Description:
+The initializeGame() doesn't recognize when it is passed faulty kingdom card.
+
+Sequence of events:
+1) Initialize a game state with the following values:
+       Int randSeed = 1000;
+       Int numPlayers = 2 thru MAX_PLAYERS;
+       Int k[10] = {-99, adventurer, feast, gardens, mine
+               , remodel, smithy, village, baron, great_hall};
+
+       Struct gameState * game
+       Struct gameState * store_game;
+       InitializeGame(numPlayers, k, randSeed, game);
+
+2) Should return -1 for invalid card, but returns 0.
+3) Print results.
+
+Print out:
+unittest3.c
+initializeGame() | bad deck, return fail | players 2 | 
+  ***check for expected value: FAIL
+  expected return value of -1, but was 0
+
+initializeGame() | bad deck, return fail | players 3 | 
+  ***check for expected value: FAIL
+  expected return value of -1, but was 0
+  
+initializeGame() | bad deck, return fail | players 3 | 
+  ***check for expected value: FAIL
+  expected return value of -1, but was 0
+
+and so on...
+
+Severity: high
+Priority: low
+_____________________________________________________________________________________
+Bug ID: BarbaraDominion-2
+Program: dominion.c
+Version: 999
+
+Description: 
+When the smithy card is played the cards are not being trashed, so the played card count is not increasing.
+
+Sequence of events:
+1) Initialize a game state with the following values:
+       Int newCards = 3;
+       Int discarded = 1;
+       Int seed = 1000;
+       Int numPlayers = 2 thru MAX_PLAYERS;
+       Int kingdomCards[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+      sea_hag, tribute, smithy, council_room}};
+
+       Struct gameState * game
+       Struct gameState * store_game;
+       InitializeGame(numPlayers, k, randSeed, game);
+2) Copy game into store_game
+3) Play smithy card with zzzsmithycardplay(0, thisPlayer, handpos, store_game); several times
+4) Check if game->handCount[thisPlayer] + newCards - discarded is the same as store_game->handCount[thisPlayer]
+5) Print results.
+
+Print out:
+cardtest1.c:
+----------------- Testing Card: smithy -----------------
+TEST 1: No need to shuffle deck cards
+zzzsmithycardplay() | handCount | player 0 | 
+  ***check for expected value: PASS
+zzzsmithycardplay() | deckCount | player 0 | 
+  ***check for expected value: PASS
+zzzsmithycardplay() | playCount | player 0 | 
+  ***check for expected value: FAIL
+  Expected 1 playedCardCount, but was 0
+TEST 2: Need to shuffle deck cards
+zzzsmithycardplay() | handCount | player 0 | 
+  ***check for expected value: PASS
+zzzsmithycardplay() | deckCount | player 0 | 
+  ***check for expected value: PASS
+zzzsmithycardplay() | playCount | player 0 | 
+  ***check for expected value: FAIL
+  Expected 1 playedCardCount, but was 0
+File 'dominion.c'
+Lines executed:39.57% of 738
+Branches executed:32.53% of 415
+Taken at least once:25.30% of 415
+No calls
+dominion.c:creating 'dominion.c.gcov'
+Severity: high
+Priority: high

@@ -1,0 +1,18 @@
+Lauren Richard
+Richarla
+CS362-400
+Homework 4
+
+After adding in my two random tests, one for the adventurer card and one for the village card my total coverage in dominion.c has increased.
+Before random testsAfter random testsIncrease in coverageLines executed26.51% of 59630.24% of 5923.73%Branches executed23.98% of 41725.54% of 4151.56%Taken at least once20.14% of 41723.13% of 4152.99%Calls executed17.00% of 10019.00% of 1002%My two random tests tested the same code that was tested by my cardtests, but there was still an increase in coverage at each level. 
+
+       To create my random tests I filled the state struct with random values, but this caused segmentation faults because some of the values did not make sense in the game. So I went through and constrained the values that were required by functions in my random tests to values that would make sense and could actually occur in a game. In the random tests I adapted the code given as an example to look at two situations, one where there are cards in the deck, and the other where there are no cards in the deck but there are cards in the discard pile. I did not look at the situation where there are no cards in the deck or in the discard pile. I copied the game state from before the card was called and compared the before and after while performing the actions that I would expect from the card on the before. 
+       For village card, the values I checked were that the deckcount was decremented by 1, the handcount was incremented by 1, the numactions were incremented by 2 and the discard was incremented by 1. For adventurer, I looked at two situations one where there were more than 2 treasure cards in the deck and another where there as only one treasure card in the deck. In the case of more than 2 treasure cards, then the number of treasure cards in the hand incremented by 2, where only 1 treasure card in deck the hand incremented by 1. I looked at the number of treasure cards and the number of cards in the hand. I ran the random tests 2000 times to make sure that even rare situations would occur. 
+ 
+Village test:
+called 2001 returned 100% blocks executed 100%
+The village test already had 100% coverage using my cardtests. My randomtest did find some bugs in the village card, though, and as a result I changed from using assert values to if/else values so that I could see the coverage. It was failing the handCount and discardCount on every round. But passed the numActions and deckCount. 
+
+Adventurer test:
+called 4001 returned 100% blocks executed 100%
+My random tests increased the blocks executed from 64% to 100%, so every block was executed and every branch was taken at least once, though some were taken very rarely. My tests found a bug so that both the count of the number of Treasure cards and the count of the number of cards in the hand both failed, so I removed the asserts and put in if/else so that I could see coverage. The treasure test passed occasionally, indicating that there must only be a bug in one branch of the adding treasure cards part of the program. 
