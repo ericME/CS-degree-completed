@@ -1,0 +1,221 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>Notes</title> 
+    <link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css" />
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <script src="js/jquery.mobile-1.3.1.min.js"></script>
+    <script src="js/note.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/bowl.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/data.js"></script>
+
+</head> 
+    
+<body>
+
+<!-- Start of zeroth page: #login -->
+<div data-role="page" id="login"> 
+
+    <div data-role="header" data-position="fixed">
+        <h3>Log In</h3>  
+    </div><!-- /header -->
+
+    <div id="login_message" data-role="content"></div>
+
+    <div data-role="content">
+        <input type="text" id="username" value="" autofocus>
+        <input type="password" id="password" value="">
+        <a href="#" id="btnLogIn" data-role="button">Log In</a>
+        <a href="#" id="btnNewUser" data-role="button">Create New User</a>
+        <p><a href="#" id="btnLogOut" data-role="button">Log Out</a>
+        <a href="#" id="btnLoginNotes" background="#2b6dbc" data-role="button">Main Menu</a></p>
+    </div><!-- /content -->
+  
+</div><!-- /page login -->
+
+
+<!-- Start of first page: #note -->
+<div data-role="page" id="note">
+
+    <div data-role="header" data-position="fixed">
+        <h3>Final Project</h3>  
+    </div><!-- /header -->
+
+    <div data-role="content">
+        <a href="#" id="btnAddNote" data-role="button">Add a Note</a>
+        <a href="#" id="btnViewNotes" data-role="button">View Notes</a>
+        <a href="#" id="btnShowMap"  data-role="button">Show My Position</a>
+        <a href="#" id="btnAddPlayer" data-role="button">Add or Update a Player</a>
+        <a href="#" id="btnViewPlayers" data-role="button">View Players</a>
+        <a href="#" id="btnAddBowl" data-role="button">Add or Update a Bowl</a>
+        <a href="#" id="btnViewBowls" data-role="button">View Bowls</a>
+        <a href="#" id="btnRemoteData" data-role="button">Remote Data </a>
+    </div><!-- /content -->
+
+  <div data-role="footer" data-position="fixed">
+    <a href="index.html" data-role="button">Home</a>
+  </div><!-- /footer -->
+
+
+</div><!-- /page note -->
+
+<!-- Start of the second page : #add-notes -->
+ <div data-role="page" id="add-notes" data-add-back-btn="true">
+
+  <div data-role="header">
+    <h1>Add a Note</h1>
+  </div>
+  <div data-role="content">
+    <input type="text" id="noteTitle" value="" placeholder="Title" autofocus>
+    <textarea placeholder="Details" name="noteDetails" id="noteDetails"></textarea>
+    <a href="#" id="btnSaveNote" data-role="button">Save Note</a>
+    <a href="#" id="btnClearNotes" data-role="button">Clear</a>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <a href="index.html" data-role="button">Home</a>
+  </div><!-- /footer -->
+
+</div> <!-- /page add-notes -->
+
+<!-- Start of the third page : #view-notes -->
+ <div data-role="page" id="view-notes" data-add-back-btn="true">
+
+  <div data-role=header>
+    <h1>List of Notes</h1>
+    <a href="#" data-role="button" class="ui-btn-right" id="clearAllNotesBtn">Clear</a>
+  </div>
+
+  <div id="note-list" data-role="content">
+  
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <a href="index.html" data-role="button">Home</a>
+  </div><!-- /footer -->
+
+</div> <!-- /page view-notes -->
+
+<!-- Start of the fourth page : #add-player -->
+ <div data-role="page" id="add-players" data-add-back-btn="true">
+
+  <div data-role="header">
+    <h1>Add a Player</h1>
+  </div>
+  <div data-role="content">
+    <input type="text" id="playerFName" value="" placeholder="First Name" autofocus>
+    <input type="text" id="playerLName" value="" placeholder="Last Name">
+    <a href="#" id="btnSavePlayer" data-role="button">Save Player</a>
+    <input type="text" id="playerID" value="" placeholder="ID Value">
+    <a href="#" id="btnUpdatePlayer" data-role="button">Update Player</a>
+    <a href="#" id="btnDeletePlayer" data-role="button">Delete Player</a>
+    <a href="#" id="btnClearPlayer" data-role="button">Clear</a>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <a href="index.html" data-role="button">Home</a>
+  </div><!-- /footer -->
+
+</div> <!-- /page add-player -->
+
+<!-- Start of the fifth page : #view-players -->
+ <div data-role="page" id="view-players" data-add-back-btn="true">
+
+  <div data-role="header">
+    <h1>Player List</h1>
+  </div>
+  <div id = "player-list" data-role="content">
+
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <a href="index.html" data-role="button">Home</a>
+  </div><!-- /footer -->
+
+</div> <!-- /page view-player -->
+
+<!-- Start of the sixth page : #add-bowl -->
+ <div data-role="page" id="add-bowls" data-add-back-btn="true">
+
+  <div data-role="header">
+    <h1>Add a Bowl</h1>
+  </div>
+  <div data-role="content">
+    <input type="text" id="bowlName" value="" placeholder="Bowl Name" autofocus>
+    <input type="text" id="bowlT1Name" value="" placeholder="Favorite Name">
+    <input type="text" id="bowlT2Name" value="" placeholder="Underdog Name">
+    <a href="#" id="btnSaveBowl" data-role="button">Save Bowl</a>
+    <input type="text" id="bowlID" value="" placeholder="ID Value">
+    <a href="#" id="btnUpdateBowl" data-role="button">Update Bowl</a>
+    <a href="#" id="btnDeleteBowl" data-role="button">Delete Bowl</a>
+    <a href="#" id="btnClearBowl" data-role="button">Clear</a>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <a href="index.html" data-role="button">Home</a>
+  </div><!-- /footer -->
+
+</div> <!-- /page add-bowl -->
+
+<!-- Start of the seventh page : #view-bowls -->
+ <div data-role="page" id="view-bowls" data-add-back-btn="true">
+
+  <div data-role="header">
+    <h1>Bowl List</h1>
+  </div>
+  <div id = "bowl-list" data-role="content">
+
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <a href="index.html" data-role="button">Home</a>
+  </div><!-- /footer -->
+
+</div> <!-- /page view-bowls -->
+
+<!-- Start of the eight page : #view-position -->
+ <div data-role="page" id="view-position" data-add-back-btn="true">
+
+  <div data-role="header">
+    <h1>Your Current...</h1>
+  </div>
+  <div id = "position" data-role="content">
+
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <a href="index.html" data-role="button">Home</a>
+  </div><!-- /footer -->
+
+</div> <!-- /page view-positino -->
+
+<!-- Start of the last page : #add-data -->
+ <div data-role="page" id="add-data" data-add-back-btn="true">
+
+  <div data-role="header">
+    <h1>Remote Data</h1>
+  </div>
+    <div id="returned_data" data-role="content">Content Failed to Load.</div>
+  <div data-role="content">
+    <a href="#" id="btnGetData" data-role="button">Refresh Data</a>
+    <textarea placeholder="Item 1" name="data1" id="data1"></textarea>
+    <textarea placeholder="Item 2" name="data2" id="data2"></textarea>
+    <textarea placeholder="Item 3" name="data3" id="data3"></textarea>
+    <a href="#" id="btnSaveData" data-role="button">Save Data</a>
+    <a href="#" id="btnClearData" data-role="button">Clear Form</a>
+    <a href="#" id="btnDeleteData" data-role="button">Delete Data</a>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <a href="index.html" data-role="button">Home</a>
+  </div><!-- /footer -->
+
+</div> <!-- /page add-data -->
+
+</body>
+</html>

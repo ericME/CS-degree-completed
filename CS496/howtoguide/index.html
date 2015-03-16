@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset="UTF-8">
+    <title>How To Guide</title>
+    <link rel='stylesheet' href='./style.css' type='text/css' media='all' />
+  </head>
+  <body>
+    <div id="content">
+    <h1>How to set up and use the MEAN Stack</h1>
+    <h4>A guide, researched and written by Eric Rouse.</h4>
+    <p>The web has run on the LAMP stack for quite some time now. Basic LAMP structure includes a linux machine as the underlying hardware. An apache web server runs on that machine as the support structure. Add to that MySQL and PHP for database and scripting and you get LAMP. And this server architecure has been serving up pages pretty well for years.</p>
+
+    <ul>
+        <li><em>L</em> - Linux</li>
+        <li><em>A</em> - Apache</li>
+        <li><em>M</em> - MySQL</li>
+        <li><em>P</em> - PHP</li>
+    </ul>
+
+    <p>But innovations of the modern web era like mongoDB, Node.js, Express and AngularJS means that you can create and run a web server without PHP, SQL or apache. Hence, that server stack can run on any machine; linux is not required.</p>
+
+    <ul>
+        <li><em>M</em> - <a href="http://docs.mongodb.org/manual/">mongoDB</a> (the leading NoSQL database)</li>
+        <li><em>E</em> - <a href="http://expressjs.com/guide/routing.html">Express</a> (flexible Node.js framework)</li>
+        <li><em>A</em> - <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">AngularJS</a> (HTML vocabulary extension)</li>
+        <li><em>N</em> - <a href="http://nodejs.org/documentation/">Node.js</a> (the javascript runtime engine)</li>
+    </ul>
+
+    <p>The aim of this document is to act as a help and guide for setting up and navigating the MEAN stack of <a href="http://mean.io/#!/">mean.io</a>, and to make it just a little more user friendly.</p>
+
+    <p>One note: this is not a comprehensive guide of the technologies mentioned, only a guide to getting the stack started. Follow the links above for some great resources for each of the items.</p>
+
+    <h2> STEP 1 </h2>
+    <p><em>Install the MEAN stack.</em></p>
+    
+    <p>Navigate to <a href="http://learn.mean.io/">mean.io</a> and follow the installation instructions for your system. Basically you need to install the prerequisites, Node.js, MongoDB, Git and Grunt. Then install the mean-cli.</p>
+    <p>You may need to be logged in as root to install mean-cli; for ubuntu users root is not enabled by default. You'll need to <a href="http://www.thegeekstuff.com/2009/09/ubuntu-tips-how-to-login-using-su-command-su-gives-authentication-failure-error-message/">enable root</a> first.</p>
+    <blockquote>
+      <pre>
+        <code>
+$ su
+# npm install -g mean-cli
+# exit
+$ mean init testApp
+$ cd testApp
+$ npm install</code></pre>
+    </blockquote>
+    <img src="./install.png" width="100%" alt="mean installed and initd">
+    <h2> STEP 2 </h2>
+    <p><em>Launch the test application.</em></p>
+    <p>The preferred method of launching the server is to use grunt.</p>
+    <blockquote>
+      <pre>
+        <code>
+$ grunt -f</code></pre>
+    </blockquote>
+    <p>Now, open your preferred browser and navigate to:</p>
+    <blockquote>
+      <pre>
+        <code>
+localhost:3000</code></pre>
+    </blockquote>
+    <img src="./running.png" width="100%" alt="running with an error">
+    <p>Here is where you'd be a bit stuck without this guide, because the next step is completely non-obvious. Your app is not actually working.</p>
+    <img src="./appcrashed.png" width="100%" alt="error showing">
+
+    <h2> STEP 3 </h2>
+    <p><em>Manually install dependancies.</em></p>
+    <p>It isn't stated anywhere, but if you use bootstrap or jquery (and the default application does) you'll need to create their folder paths and files manually. Otherwise you'll get an error and nothing will load when you launch your app.
+    Note there is only one GET request:</p>
+    <img src="./running.png" width="100%" alt="running with an error">
+    <p>As opposed to if everything is working:</p>
+    <img src="./properconnect.png" width="100%" alt="running with an error">
+    <p>First create the jquery directories and file:</p>
+    <blockquote>
+      <pre>
+        <code>
+~/testapp/bower_components/jquery/dist/jquery.min.map</code></pre>
+    </blockquote>
+    <p>Now create the bootstrap directory:</p>
+    <blockquote>
+      <pre>
+        <code>
+~/testapp/bower_components/bootstrap/</code></pre>
+    </blockquote>
+    <p>Then download <a href="http://getbootstrap.com/getting-started/#download">bootstrap</a>: </p>  
+    <img src="./getbootstrap.png" width="100%" alt="signed in">
+    <p>Extract the contents of the bootstrap zip folder to the bootstrap directory created above. Rename the bootstrap-*-dist folder to dist. The following paths should now exist:</p>
+    <blockquote>
+      <pre>
+        <code>
+~/testapp/bower_components/bootstrap/dist/css/
+~/testapp/bower_components/bootstrap/dist/fonts/
+~/testapp/bower_components/bootstrap/dist/js/</code></pre>
+    </blockquote>
+    <h2> STEP 4 </h2>
+    <p><em>Explore the default application.</em></p>
+    <p>So what exactly happened when we used the <code>mean init</code> command on this directory, creating our application? Well, by and large a bunch of files and folders were created.</p>
+    <ul>
+        <li>bower_components/
+            <br/>Files associated with the package manager of our app. This is where we added bootstrap and jquery information. Other external dependancies would reside here.</li>
+        <li>config/
+            <br/>Configuration files storage, espcially for express.</li>
+        <li>node_modules/
+            <br/>All the node modules for our app.</li>
+        <li>packages/
+            <br/>This directory is of particular interest as here reside the actual packages of our app.</li>
+        <li>tools/
+            <br/>Storage location for grunt files.</li>
+        <li>bower.json
+            <br/>Bower dependancy declarations.</li>
+        <li>Gruntfile.js
+            <br/>Project configuration for grunt. Of note here is the var paths section. It gives us clues as to where and how we need to design our packages so grunt can find them and display their views.
+        <blockquote>
+            <pre>
+                <code>
+var paths = {
+  js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/contrib/**/*.js', '!packages/contrib/**/node_modules/**'],
+  html: ['packages/**/public/**/views/**', 'packages/**/server/views/**'],
+  css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css']
+};</code></pre>
+    </blockquote>
+        </li>
+        <li>karma.conf.js
+            <br/>Debugging configuration.</li>
+        <li>LICENSE
+            <br/>A copy of the MIT license.</li>
+        <li>mean.json
+            <br/>MEAN dependancies.</li>
+        <li>package.json
+            <br/>Full description and dependancies of our application.</li>
+        <li>Procfile
+            <br/>Process types.</li>
+        <li>README.md
+            <br/>A markdown version of <a href="http://learn.mean.io/">mean.io</a>.</li>
+        <li>server.js
+            <br/>Code to run the server instance.</li>
+    
+    </ul>
+
+    <p>The packages directory merits further discussion as it is the heart of our application. Within this directory are our apps. By default there are four:</p>
+    <ol>
+        <li>system/
+        <li>theme/
+        <li>users/
+        <li>articles/
+    </ol>
+    <p>Each of these is further subdivided into a public and server folder and four files, app.js, mean.json, package.json and README.md. These extend the files of that same name in the primary application directory.</p>
+    <p>Inside the public directory are more folders, most notably, "views". Within views we store the html files that make up the front end of our app. The other folders (assets, controllers, routes, services and tests) are pretty self explanatory and we'll go into more detail on some of them in a bit.</p>
+    <p>For now, let's look in the view folder and edit the index.html file</p>
+
+    <h2> STEP 5 </h2>
+    <p><em>Learn to browse.</em></p>
+    <p>Now that we know a little bit about the default structure and files, lets start trying to interact with the app via a web browser. Make sure your server is still running (<code>grunt -f</code>) and launch:</p>
+    <blockquote>
+        <pre>
+            <code>
+http://localhost:3000/system/views/</code></pre>
+    </blockquote>
+    <p>You should see the following:</p>
+    <img src="./systemviews.png" width="100%" alt="unaltered system views">    
+    <p>Now, add some text to the index.html file in the views folder of the systems package. Save changes and hit refresh in the browser:</p>
+    <img src="./altsystemviews.png" width="100%" alt="altered system views">
+    <p>Using that structure you can view any of the pages in any of the packages.</p>
+     <blockquote>
+        <pre>
+            <code>
+http://localhost:3000/*package name*/views/[page.html]</code></pre>
+    </blockquote>
+    <p>For instance, from the users package, the register page:</p>
+     <blockquote>
+        <pre>
+            <code>
+http://localhost:3000/users/views/register.html</code></pre>
+    </blockquote>
+    <img src="./registeruser.png" width="100%" alt="register a user page">
+    <p>Or, from the articles package, the create page:</p>
+     <blockquote>
+        <pre>
+            <code>
+http://localhost:3000/articles/views/create.html</code></pre>
+    </blockquote>
+    <img src="./articles_create.png" width="100%" alt="create an article page">
+    <p class="centimg"><img src="./content.png" width="50%"  alt="create content"></p>      
+    <h2> STEP 6 </h2>
+    <p><em>Create a new package from an addon.</em></p>
+    <p>So, there is quite a lot to explore of the built-in application, but it's still pretty minimal. Let's install a new package from the list of available addons. I like google maps, so let's play with Gmap.</p>
+     <blockquote>
+        <pre>
+            <code>
+$ mean install gmap</code></pre>
+    </blockquote>
+    <p>A new directory has been added to your packages folder called <code>contrib/gmap</code>. Let's browse the new package and see what's been added!</p>
+    <blockquote>
+        <pre>
+            <code>
+http://localhost:3000/gmap/views</code></pre>
+    </blockquote>
+    <img src="./gmapview.png" width="100%" alt="default gmap package view index">
+    <p>Not much. But, there is a quickstart guide, so let's try that. Create a new file in the views folder called map.html and add the code the page suggested.</p>
+    <blockquote>
+        <pre>
+            <code>
+&ltbody&gt
+&ltdiv data-ng-controller="GmapController"&gt
+ &lttabset&gt
+
+  &lttab heading="A Map:"&gt
+   &lth2&gtMap&lt/h2&gt
+   &ltdiv class="col-md-4 col-lg-8 example-block alt"&gt
+    &ltdiv class="span3 bs-docs-sidebar"&gt
+     &ltdiv class="angular-google-map-container"&gt
+      &ltdiv id="gmap"&gt
+       &ltgoogle-map center="mymap.center" zoom="mymap.zoom" draggable="true" dragging="mymap.dragging"&gt
+       &ltmarker pan="true" idKey=0 data-ng-repeat="gmarker in markers" coords="gmarker.coords" &gt&lt/marker&gt
+       &lt/google-map&gt
+      &lt/div&gt
+     &lt/div&gt
+    &lt/div&gt
+   &lt/div&gt
+  &lt/tab&gt
+ &lt/tabset&gt
+
+&lt/div&gt
+&lt/body&gt</code></pre>
+    </blockquote>
+    <p>And now browse to it!</p>
+        <blockquote>
+        <pre>
+            <code>
+http://localhost:3000/gmap/views/map.html</code></pre>
+    </blockquote>
+    <img src="./map.png" width="100%" alt="map view">
+    <p>Huzzah! A map!</p>
+     <h2> STEP 7 </h2>
+    <p><em>Create a new package from scratch.</em></p>
+    <p>So, installing addons is pretty easy. What about creating a new package from scratch?</p>
+    <p>I'd like to create a package that displays my name to the world. So, I'll need to create a folder, call it eric and add the /public, /server and app.js, mean.json, package.json and README.md directories and files. Copy the /server folder from the system folder. Copy the /public folder from the system folder as well. In the views folder delete everything and add only index.html as per the listing below.</p>
+    <p>app.js</p>
+    <blockquote>
+        <pre>
+            <code>
+'use strict';
+
+/*
+ * Defining the Package
+ */
+var Module = require('meanio').Module,
+  favicon = require('serve-favicon');
+
+var SystemPackage = new Module('eric');
+
+/*
+ * All MEAN packages require registration
+ * Dependency injection is used to define required modules
+ */
+SystemPackage.register(function(app, auth, database) {
+
+  //We enable routing. By default the Package Object is passed to the routes
+  SystemPackage.routes(app, auth, database);
+
+  SystemPackage.aggregateAsset('css', 'common.css');
+  SystemPackage.angularDependencies(['ui.router', 'mean-factory-interceptor']);
+
+  // The middleware in config/express will run before this code
+
+  // Set views path, template engine and default layout
+  app.set('views', __dirname + '/eric/views');
+
+  // Setting the favicon and static folder
+  app.use(favicon(__dirname + '/public/assets/img/favicon.ico'));
+
+  // Adding robots and humans txt
+  app.useStatic(__dirname + '/public/assets/static');
+
+  
+
+  return SystemPackage;
+
+});
+</code></pre>
+    </blockquote>
+    <p>mean.json</p>
+    <blockquote>
+        <pre>
+            <code>
+{
+  "dependencies": {
+  }
+}
+</code></pre>
+    </blockquote>
+    <p>package.json</p>
+    <blockquote>
+        <pre>
+            <code>
+{
+  "name": "eric",
+  "version": "0.0.1",
+  "description": "Eric is rad",
+  "author": {
+    "name": "Eric"
+  },
+  "mean": "0.4.x",
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}
+</code></pre>
+    </blockquote>
+    <p>README.md</p>
+    <blockquote>
+        <pre>
+            <code>
+README: eric
+</code></pre>
+    </blockquote>
+</code></pre>
+    </blockquote>
+    <p>index.html</p>
+    <blockquote>
+        <pre>
+            <code>
+&ltsection class="welcome container-fluid" data-ng-controller="IndexController"&gt
+  &ltdiv class="col-md-12 first"&gt
+  &ltp&gtERIC WAS HERE!&lt/p&gt
+  &ltp&gtMEAN STACK IS AWESOME&lt/p&gt
+  &lt/div&gt
+&lt/section&gt
+</code></pre>
+    </blockquote>
+    <p>Shutdown grunt if it is running and restart it <code>grunt -f</code>. Then browse to our new page.</p>
+    <blockquote>
+        <pre>
+            <code>
+http://localhost:3000/eric/views</code></pre>
+    </blockquote>
+    <img src="./name.png" width="100%" alt="say my name">
+    <p>Success! The world will know my name!</p>    
+     <h2> conclusion </h2>
+    <p><em>It is not in the stars to hold our destiny but in ourselves.</em></p>
+    <p>There you have it! You are now set up to develop web applications using the MEAN stack. Congratulations! Now you just need to browse the documentation to Node, Express and Angular to figure out how to do whatever it is you want to do! But really, things are pretty straight forward at this point. If you're familiar with these web tools then you already know all about the templating, database and http/http.port stuff. That is the appeal of the MEAN stack.</p>
+    <p>Now go create some web apps, this time with MEAN-ing!</p>
+    <h6>EOF</h6>
+    </div>
+  </body>
+</html>

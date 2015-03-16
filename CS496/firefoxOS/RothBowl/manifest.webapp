@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "name": "RothBowl",
+  "description": "Loads remote content and saves local content",
+  "launch_path": "/index.html",
+  "icons": {
+    "16": "/img/icons/football_ball.ico",
+    "48": "/img/icons/football_ball.ico",
+    "60": "/img/icons/football_ball.ico",
+    "128": "/img/icons/football_ball.png"
+  },
+  "developer": {
+    "name": "Eric Rouse",
+    "url": "http://web.engr.oregonstate.edu/~rousee/"
+  },
+  "type": "privileged",
+  "permissions": {
+    "systemXHR": {
+      "description": "Required to load remote content"
+    },
+    "geolocation": {
+      "description": "Required to show position"
+    }
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "locales": {
+    "es": {
+      "name": "Aplicación privilegiada",
+      "description": "Demuestra cómo utilizar permisos para cargar contenido remoto",
+      "permissions": {
+        "systemXHR": {
+          "description": "Requerido para cargar contenido remoto"
+        }
+      }
+    }
+  },
+  "default_locale": "en"
+}
