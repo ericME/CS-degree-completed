@@ -1,0 +1,6 @@
+Installation
+Connect a registered device attached to a corresponding Apple Developer membership to a laptop running Xcode with the project. The steps to enroll in the Apple Developer program, get the necessary certificates, register your device, and set up Xcode to run your app on your registered device are all outlined on this website: http://codewithchris.com/deploy-your-app-on-an-iphone/.
+
+Once these steps are completed, you just need to find the .xcodeproj file in the project folder, and click it so that the project opens in Xcode. From there, you should be able to choose to run the application on your device, and it will install and automatically open the application on your phone. 
+
+Of course, for the the administration web site no installation is required, just the use of a modern browser like Chrome or Firefox. 

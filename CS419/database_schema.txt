@@ -1,0 +1,62 @@
++--------------------+
+| Tables_in_cs419-g6 |
++--------------------+
+| administrators     |
+| businesses         |
+| categories         |
++--------------------+
+
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| username | varchar(255) | NO   | UNI | NULL    |                |
+| password | varchar(255) | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(255) | NO   |     | NULL    |                |
+| address | varchar(255) | YES  |     | NULL    |                |
+| phone   | varchar(255) | YES  |     | NULL    |                |
+| url     | varchar(255) | YES  |     | NULL    |                |
+| hours   | varchar(255) | YES  |     | NULL    |                |
+| zip     | varchar(255) | YES  |     | NULL    |                |
+| accepts | text         | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| item_1  | varchar(255) | YES  |     | NULL    |                |
+| item_2  | varchar(255) | YES  |     | NULL    |                |
+| item_3  | varchar(255) | YES  |     | NULL    |                |
+| item_4  | varchar(255) | YES  |     | NULL    |                |
+| item_5  | varchar(255) | YES  |     | NULL    |                |
+| item_6  | varchar(255) | YES  |     | NULL    |                |
+| item_7  | varchar(255) | YES  |     | NULL    |                |
+| item_8  | varchar(255) | YES  |     | NULL    |                |
+| item_9  | varchar(255) | YES  |     | NULL    |                |
+| item_10 | varchar(255) | YES  |     | NULL    |                |
+| item_11 | varchar(255) | YES  |     | NULL    |                |
+| item_12 | varchar(255) | YES  |     | NULL    |                |
+| item_13 | varchar(255) | YES  |     | NULL    |                |
+| item_14 | varchar(255) | YES  |     | NULL    |                |
+| item_15 | varchar(255) | YES  |     | NULL    |                |
+| item_16 | varchar(255) | YES  |     | NULL    |                |
+| item_17 | varchar(255) | YES  |     | NULL    |                |
+| item_18 | varchar(255) | YES  |     | NULL    |                |
+| item_19 | varchar(255) | YES  |     | NULL    |                |
+| item_20 | varchar(255) | YES  |     | NULL    |                |
+| item_21 | varchar(255) | YES  |     | NULL    |                |
+| item_22 | varchar(255) | YES  |     | NULL    |                |
+| item_23 | varchar(255) | YES  |     | NULL    |                |
+| item_24 | varchar(255) | YES  |     | NULL    |                |
+| item_25 | varchar(255) | YES  |     | NULL    |                |
+| name    | varchar(255) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+
+

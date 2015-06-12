@@ -1,0 +1,6 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ http://web.engr.oregonstate.edu/~rousee/CS419/api/index.php?handler=$1 [L,QSA]
+#RewriteRule ^.*$ /phprestsql/demo/index.php
